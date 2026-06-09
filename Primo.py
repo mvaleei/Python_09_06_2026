@@ -97,6 +97,11 @@ print(type(numeroConvertito))
 
 print(stringa,numMio,maggiorenne)   #conversione implicita - vale solo per il print
 
+#interazione con l'utente
+nomeDigitato=input("Qual'è il tuo nome")
+print("Il nome dichiarato è: ",nomeDigitato)
 
+anni=input("Quanti anni hai")
+print(type(anni))
 
 
