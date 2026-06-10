@@ -37,6 +37,16 @@ class cane:
       elif razza == 'Bassotto':
           self.__aggr = 4
 
+    def setAggressivita(self,aggressi):
+        if aggressi < 7:
+            self.__aggr=aggressi
+        else:
+            self.__aggr=6
+
+    def getAggressivita(self):
+        return self.__aggr
+        
+
     
 '''
 fido =cane()        #nomeNuovoOggetto = nomeclasse()
@@ -73,9 +83,12 @@ print(fido.globale())
 print(pluto.globale())
 print(bianca.globale())
 
-fido.aggr=1
-print(fido.globale())
-print(fido.aggr)
+#fido.aggr=1
+#print(fido.globale())
+#print(fido.aggr)
 #print(pluto.aggr)
+fido.setAggressivita(20)
+print(fido.globale())
+
 
 
