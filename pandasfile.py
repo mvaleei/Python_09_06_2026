@@ -85,9 +85,21 @@ dimensione=datiFile.shape
 
 
 
-print('Inizio raggruppamento')
+#print('Inizio raggruppamento')
 datiRaggruppati = datiFile.groupby(['cognome'])['Importo'].mean()#.min()#.max()
-print(datiRaggruppati)
+#print(datiRaggruppati)
+
+#importiamo un file excel puro
+fileLetto = pn.read_excel('fatture.xlsx')
+#print(fileLetto)
+#print(type(fileLetto))
+print(fileLetto['Importo'][4])
+
+fileLetto['Saldare'] ='SI'
+print(fileLetto)
+
+fileLetto.to_excel('Scritto.xlsx',sheet_name='Python pandas')
+
 
 
 
