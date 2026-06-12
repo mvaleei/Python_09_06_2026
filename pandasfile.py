@@ -93,13 +93,39 @@ datiRaggruppati = datiFile.groupby(['cognome'])['Importo'].mean()#.min()#.max()
 fileLetto = pn.read_excel('fatture.xlsx')
 #print(fileLetto)
 #print(type(fileLetto))
-print(fileLetto['Importo'][4])
+#print(fileLetto['Importo'][4])
 
 fileLetto['Saldare'] ='SI'
-print(fileLetto)
+#print(fileLetto)
 
 fileLetto.to_excel('Scritto.xlsx',sheet_name='Python pandas')
 
+
+#print(datiFile)
+#creare un documento esportabile, mediante dei filtri applicati
+
+#creo un oggeto che contiene il filtro da applicare
+maschera =  datiFile['BuonFatturato'] == True
+
+
+#applicao il filtro
+datiFiltrati = datiFile[maschera]
+
+print(datiFiltrati)
+
+datiFiltrati.to_excel("Filtro.xlsx",sheet_name="Fatturato ottimale")
+
+
+#rinominamo le clonne del nuovo oggetto
+nuoviDati =datiFiltrati[['nome','Importo']]  #elenca le colonne da rinominare
+
+nuoveColonne =['Nominativo Cliente','Imponibile']  #crei i  nuovi nomi (delle colonne)
+
+nuoviDati.columns=nuoveColonne   # assegna i nuovi nomi alle vecchie colonne
+
+print(nuoviDati)
+
+nuoviDati.to_excel("Commerciale.xlsx",sheet_name="Marketing")
 
 
 
