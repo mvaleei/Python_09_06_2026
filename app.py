@@ -3,7 +3,7 @@
 #django
 #Flask
 
-from flask import Flask, request,render_template
+from flask import Flask, request,render_template,jsonify
 
 app = Flask(__name__)
 
@@ -41,6 +41,37 @@ def ricezioneDati():
     print("Sto per ricevere i dati dal form del front-end")
     #return render_template('Loggato.html', nomeInserito = user , passwordInserita=password)
     return render_template('Loggato.html', dati =[ user ,password])
+
+
+
+#servizi get/post/put/delete
+@app.route('/api/utente', methods=["GET"])
+def get_data():
+    dati ={"utente2":"mrossi","password":"verdi","citta":"Bolzano"}
+    return jsonify(dati)
+
+@app.route('/api/utente', methods=["POST"])
+def post_data():
+    datiRicevuti = request.get_json()
+    print(datiRicevuti)
+    datiRicevuti['ricevuti'] ='si'
+    return jsonify(datiRicevuti)
+
+
+@app.route('/api/utente' , methods =['DELETE'])
+def delete_data():
+    datiCancella = request.get_json()
+    ritorno ={"cancellato":"si","idcancellato":datiCancella['id']}
+    return jsonify(ritorno)
+
+
+@app.route('/api/utente', methods=['PUT'])
+def change_data():
+    datiCancella = request.get_json()
+    datiCancella['user']="Pierbaldo"
+    return jsonify(datiCancella)
+
+
 
 #avvio il server 
 if __name__ == '__main__':
